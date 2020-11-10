@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CookShare.Data;
 using CookShare.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
 
 namespace CookShare.Controllers
@@ -71,6 +72,26 @@ namespace CookShare.Controllers
             }
 
             return View(r);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Recipe r = await _context.Recipes.Where(rec => rec.RecipeId == id).SingleAsync();
+            return View(r);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Recipe r = await _context.Recipes.Where(rec => rec.RecipeId == id).SingleAsync();
+
+            _context.Entry(r).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = $"{r.Title} was deleted.";
+
+            return RedirectToAction("Index");
         }
     }
 }
