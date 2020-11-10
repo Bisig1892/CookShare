@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CookShare.Data;
 using CookShare.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CookShare.Controllers
 {
@@ -46,6 +47,30 @@ namespace CookShare.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            // Get recipe with corresponding id
+            Recipe r = await _context.Recipes.Where(rec => rec.RecipeId == id).SingleAsync();
+
+            // pass recipe to view
+            return View(r);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Recipe r)
+        {
+            if(ModelState.IsValid)
+            {
+                _context.Entry(r).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(r);
         }
     }
 }
