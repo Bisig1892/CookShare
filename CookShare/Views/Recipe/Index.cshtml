@@ -9,62 +9,17 @@
 <p>
     <a class="btn btn-primary" asp-controller="Recipe" asp-action="Add">Add Recipe</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrepTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CookTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servings)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredients)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Instructions)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PrepTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CookTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servings)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ingredients)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Instructions)
-            </td>
-            <td>
-                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.RecipeId">Edit</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.RecipeId">Delete</a>
-            </td>
-        </tr>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <a href="#" class="btn btn-primary">See Recipe</a>
+                </div>
+            </div>
+        </div>
+    </div>
 }
-    </tbody>
-</table>

@@ -16,6 +16,10 @@ namespace CookShare.Models
         [Key]
         public int RecipeId { get; set; }
         /// <summary>
+        /// Description of the recipe
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// name of the recipe
         /// </summary>
         public string Title { get; set; }
