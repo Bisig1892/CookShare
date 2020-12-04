@@ -4,20 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Recipe Catalog</h1>
 
 <p>
     <a class="btn btn-primary" asp-controller="Recipe" asp-action="Add">Add Recipe</a>
 </p>
-@foreach (var item in Model)
+@foreach (Recipe r in Model)
 {
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <a href="#" class="btn btn-primary">See Recipe</a>
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => r.Title)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => r.Description)</p>
+                    <a class="btn btn-primary" asp-action="ViewRecipe" asp-route-id="@r.RecipeId">See Recipe</a>
                 </div>
             </div>
         </div>
