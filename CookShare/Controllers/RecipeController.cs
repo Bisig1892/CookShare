@@ -93,5 +93,11 @@ namespace CookShare.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> ViewRecipe(int id)
+        {
+            Recipe r = await _context.Recipes.Where(rec => rec.RecipeId == id).SingleAsync();
+            return View(r);
+        }
     }
 }
