@@ -47,5 +47,9 @@ namespace CookShare.Models
         /// The directions to make the dish
         /// </summary>
         public string Instructions { get; set; }
+        /// <summary>
+        /// Id of the logged in user that created the recipe
+        /// </summary>
+        public int userId { get; set; }
     }
 }

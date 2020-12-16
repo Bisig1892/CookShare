@@ -33,6 +33,12 @@ namespace CookShare.Controllers
 
         public IActionResult Add()
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                TempData["Message"] = "Please log in before adding a new recipe.";
+                return RedirectToAction("Index");
+
+            }
             return View();
         }
 

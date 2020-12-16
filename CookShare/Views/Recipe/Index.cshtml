@@ -6,6 +6,16 @@
 
 <h1>Recipe Catalog</h1>
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <p>
     <a class="btn btn-primary" asp-controller="Recipe" asp-action="Add">Add Recipe</a>
 </p>
