@@ -35,6 +35,7 @@ namespace CookShare
                 .AddEntityFrameworkStores<RecipeContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
 
