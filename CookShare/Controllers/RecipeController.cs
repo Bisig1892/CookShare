@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CookShare.Data;
 using CookShare.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.EntityFrameworkCore;
@@ -33,12 +34,15 @@ namespace CookShare.Controllers
 
         public IActionResult Add()
         {
+            // If user is not logged in 
             if(!User.Identity.IsAuthenticated)
             {
                 TempData["Message"] = "Please log in before adding a new recipe.";
+                // Redirect to catalog with alert to log in
                 return RedirectToAction("Index");
 
             }
+            // if user is logged in return Add view
             return View();
         }
 
